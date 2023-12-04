@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
-using Business.Constants;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,25 +12,24 @@ namespace Business.Concrete
 {
     public class ActivityManager : IActivityService
     {
-        IActivityService _activityService;
 
-        public ActivityManager(IActivityService activityService)
+        IActivityDal _activityDal;
+
+        public ActivityManager(IActivityDal activityDal)
         {
-            _activityService = activityService;
+            _activityDal = activityDal;
         }
 
         public IResult Add(Activity activity)
         {
-            _activityService.Add(activity);
+            _activityDal.Add(activity);
             return new SuccessResult();
         }
 
         public IDataResult<List<Activity>> GetAll()
         {
-            return new SuccessDataResult<List<Activity>>(_activityService.GetAll());
+            throw new NotImplementedException();
         }
-
-        
 
         public IDataResult<Activity> GetShcoolById(int ActivityId)
         {

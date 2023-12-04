@@ -38,6 +38,14 @@ namespace Business.Constants
         public static string SchoolsListed = "Okullar Listelendi";
         public static string SchoolListed = "Okul Listelendi";
 
+        //Activity Messages
+        public static string ActivityAdded = "Aktivite başarıyla eklendi.";
+        public static string ActivityDeleted = "Aktivite başarıyla silindi.";
+        public static string ActivityUpdated = "Aktivite başarıyla güncellendi.";
+        public static string ActivitiesListed = "Aktiviteler listelendi";
+        public static string ActivityListed = "Aktivite listelendi";
+
+
 
     }
 }

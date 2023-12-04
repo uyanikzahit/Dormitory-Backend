@@ -1,7 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -13,41 +15,39 @@ namespace Business.Concrete
 {
     public class SchoolManager : ISchoolService
     {
-        ISchoolService _schoolService;
+        ISchoolDal _schoolDal;
 
-        public SchoolManager(ISchoolService schoolService)
+        public SchoolManager(ISchoolDal schoolDal)
         {
-            _schoolService = schoolService;
+            _schoolDal = schoolDal;
         }
-
+        //[SecuredOperation("admin")]
         public IResult Add(School school)
         {
-            _schoolService.Add(school);
+            _schoolDal.Add(school);
             return new SuccessResult(Messages.SchoolAdded);
         }
 
         public IDataResult<List<School>> GetAll()
         {
-            
-            return new SuccessDataResult<List<School>>(_schoolService.GetAll());
-
+      
+            return new SuccessDataResult<List<School>>(_schoolDal.GetAll(),Messages.SchoolsListed);
         }
-
         public IDataResult<School> GetShcoolById(int schoolId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<School>(_schoolDal.Get(b => b.SchoolId ==schoolId),(Messages.SchoolListed));
         }
 
         public IResult Remove(School school)
         {
-            _schoolService.Remove(school);
+            _schoolDal.Delete(school);
             return new SuccessResult(Messages.SchoolDeleted);
         }
 
         public IResult Update(School school)
         {
-            _schoolService.Update(school);
-            return new SuccessResult(Messages.SchoolDeleted);
+            _schoolDal.Update(school);
+            return new SuccessResult(Messages.SchoolUpdated);
         }
     }
 }
