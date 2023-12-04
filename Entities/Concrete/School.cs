@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Shcool : IEntity
+    public class School : IEntity
     {
         public int SchoolId { get; set; }
 
-        public string ShcoolName { get; set; }
+        public string SchoolName { get; set; }
 
-        public string ShcoolSection { get; set; }
+        public string SchoolSection { get; set; }
     }
 }

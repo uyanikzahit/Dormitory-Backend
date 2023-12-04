@@ -32,11 +32,11 @@ namespace Business.Constants
         public static string AccessTokenCreated = "Token oluşturuldu";
 
         //Shcool Messages
-        public static string ShcoolAdded = "Okul başarıyla eklendi.";
-        public static string ShcoolDeleted = "Okul başarıyla silindi.";
-        public static string ShcoolUpdated = "Okul başarıyla güncellendi.";
-        public static string ShcoolsListed = "Okullar Listelendi";
-        public static string ShcoolListed = "Okul Listelendi";
+        public static string SchoolAdded = "Okul başarıyla eklendi.";
+        public static string SchoolDeleted = "Okul başarıyla silindi.";
+        public static string SchoolUpdated = "Okul başarıyla güncellendi.";
+        public static string SchoolsListed = "Okullar Listelendi";
+        public static string SchoolListed = "Okul Listelendi";
 
 
     }

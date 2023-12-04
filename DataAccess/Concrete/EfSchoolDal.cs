@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class EfShcoolDal : EfEntityRepositoryBase<Shcool, DormitoryContext>, IShcoolDal
+    public class EfSchoolDal : EfEntityRepositoryBase<School, DormitoryContext>, ISchoolDal
     {
     }
 }
