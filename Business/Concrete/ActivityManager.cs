@@ -1,10 +1,16 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Business.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,30 +26,38 @@ namespace Business.Concrete
             _activityDal = activityDal;
         }
 
+        [ValidationAspect(typeof(ActivityValidator))]
         public IResult Add(Activity activity)
         {
             _activityDal.Add(activity);
             return new SuccessResult();
         }
 
+        [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<Activity>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Activity>>(_activityDal.GetAll(), Messages.ActivitiesListed);
         }
 
-        public IDataResult<Activity> GetShcoolById(int ActivityId)
+        [CacheAspect]
+        [PerformanceAspect(7)]
+        public IDataResult<Activity> GetActivityById(int activityId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Activity>(_activityDal.Get(c => c.ActivityId == activityId), Messages.ActivityListed);
         }
 
         public IResult Remove(Activity activity)
         {
-            throw new NotImplementedException();
-        }
+            _activityDal.Delete(activity);
+            return new SuccessResult(Messages.ActivityDeleted);
 
+        }
+        [ValidationAspect(typeof(ActivityValidator))]
         public IResult Update(Activity activity)
         {
-            throw new NotImplementedException();
+            _activityDal.Update(activity);
+            return new SuccessResult(Messages.ActivityUpdated);
         }
     }
 }

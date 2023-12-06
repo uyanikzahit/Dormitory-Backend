@@ -18,6 +18,8 @@ namespace Entities.Concrete
         
         public string ActivityName { get; set; }
 
+        public string ActivityDescription { get; set; }
+             
         public DateTime Date { get; set; }
     }
 }

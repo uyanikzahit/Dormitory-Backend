@@ -13,6 +13,12 @@ namespace Entities.Concrete
 
         public int RoomNumber { get; set; }
 
+        public string BlokName { get; set; }
+
+        public int FloorNumber { get; set; }
+
+
+
 
     }
 }

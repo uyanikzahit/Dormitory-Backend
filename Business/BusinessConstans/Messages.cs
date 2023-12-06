@@ -45,6 +45,12 @@ namespace Business.Constants
         public static string ActivitiesListed = "Aktiviteler listelendi";
         public static string ActivityListed = "Aktivite listelendi";
 
+        //Rooom Messages
+        public static string RoomAdded = "Aktivite başarıyla eklendi.";
+        public static string RoomDeleted = "Aktivite başarıyla silindi.";
+        public static string RoomUpdated = "Aktivite başarıyla güncellendi.";
+        public static string RoomsListed = "Aktiviteler listelendi";
+        public static string RoomListed = "Aktivite listelendi";
 
 
     }

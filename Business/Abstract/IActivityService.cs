@@ -14,6 +14,6 @@ namespace Business.Abstract
         IResult Add(Activity activity);
         IResult Remove(Activity activity);
         IResult Update(Activity activity);
-        IDataResult<Activity> GetShcoolById(int ActivityId);
+        IDataResult<Activity> GetActivityById(int activityId);
     }
 }
