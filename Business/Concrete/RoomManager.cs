@@ -4,6 +4,7 @@ using Business.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -27,7 +28,12 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RoomValidator))]
         public IResult Add(Room room)
         {
-            _roomDal.Add(room);
+            IResult result = BusinessRules.Run(CheckIfRoomNumberExists(room.RoomNumber));
+            if (result != null)
+            {
+                return result;
+            }
+
             return new SuccessResult(Messages.RoomAdded);
         }
 
@@ -56,6 +62,17 @@ namespace Business.Concrete
         {
             _roomDal.Update(room);
             return new SuccessResult(Messages.RoomUpdated);
+        }
+
+
+        private IResult CheckIfRoomNumberExists(int roomNumber)
+        {
+            var result = _roomDal.GetAll(p => p.RoomNumber == roomNumber).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.RoomNumberAlreadyExists);
+            }
+            return new SuccessResult();
         }
     }
 }
