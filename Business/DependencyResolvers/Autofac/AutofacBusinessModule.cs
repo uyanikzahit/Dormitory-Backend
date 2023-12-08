@@ -32,6 +32,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<SchoolManager>().As<ISchoolService>();
             builder.RegisterType<EfSchoolDal>().As<ISchoolDal>();
 
+            builder.RegisterType<ActivityManager>().As<IActivityService>();
+            builder.RegisterType<EfActivityDal>().As<IActivityDal>();
+
+
 
 
 

@@ -7,9 +7,9 @@ using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using TokenOptions = Core.Utilities.Security.Jwt.TokenOptions;
+
+
 
 namespace WebAPI
 {
@@ -17,26 +17,22 @@ namespace WebAPI
     {
         public static void Main(string[] args)
         {
-
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddCors();
+            
             builder.Services.AddControllers();
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("http://localhost:4200"));
-            });
-
-
+            
             builder.Host.UseServiceProviderFactory(services => new AutofacServiceProviderFactory())
-                .ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacBusinessModule()); });
-
+                        .ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacBusinessModule()); });
+             
             var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -48,17 +44,15 @@ namespace WebAPI
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
             builder.Services.AddDependencyResolvers(new ICoreModule[]
             {
-                new CoreModule()
-            }) ; 
-
-
-
+                new CoreModule(),
+            }); 
 
             var app = builder.Build();
 
@@ -71,20 +65,17 @@ namespace WebAPI
 
             app.UseStaticFiles();
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
-            //Kullanýcý giriþ anahtarý.
             app.UseAuthentication();
 
-            //Kullanýcý yetki sorgulama.
             app.UseAuthorization();
+
             app.MapControllers();
 
             app.Run();
         }
     }
 }
-
-
