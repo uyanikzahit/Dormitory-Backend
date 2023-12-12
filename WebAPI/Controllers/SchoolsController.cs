@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,30 +8,30 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class SchoolsController : ControllerBase
     {
-        IUserService _userService;
+        ISchoolService _schoolService;
 
-        public UsersController(IUserService userService)
+        public SchoolsController(ISchoolService schoolService)
         {
-            _userService = userService;
+            _schoolService = schoolService;
         }
 
+
         [HttpGet("getall")]
-        public IActionResult GetAll() 
+        public IActionResult GetAll()
         {
-            var result = _userService.GetAll();
-            if (result.Success)
+            var result = _schoolService.GetAll();
+            if(result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-
-        [HttpGet("getbymail")]
-        public IActionResult GetByMail(string mail)
+        [HttpGet("getbyid")]
+        public IActionResult GetShcoolById(int schoolId)
         {
-            var result = _userService.GetByMail(mail);
+            var result = _schoolService.GetShcoolById(schoolId);
             if (result.Success)
             {
                 return Ok(result);
@@ -39,9 +40,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(User user)
+        public IActionResult Add(School school)
         {
-            var result = _userService.Add(user);
+            var result = _schoolService.Add(school);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public IActionResult Delete(User user) 
+        public IActionResult Delete(School school)
         {
-            var result = _userService.Delete(user);
+            var result = _schoolService.Remove(school);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,10 +65,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(User user)
+        public IActionResult Update(School school)
         {
-            var result = _userService.Update(user);
-            if(result.Success)
+            var result = _schoolService.Update(school);
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -76,6 +77,5 @@ namespace WebAPI.Controllers
                 return BadRequest(result);
             }
         }
-
     }
 }

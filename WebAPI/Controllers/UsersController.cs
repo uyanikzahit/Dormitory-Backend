@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concrete;
-using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,42 +7,42 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ActivitiesController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        IActivityService _activityService;
+        IUserService _userService;
 
-        public ActivitiesController(IActivityService activityService)
+        public UsersController(IUserService userService)
         {
-            _activityService = activityService;
+            _userService = userService;
         }
+
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _activityService.GetAll();
-            if (result.Success)
+            var result = _userService.GetAll();
+            if(result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetActivityById(int activityId)
-        {
-            var result = _activityService.GetActivityById(activityId);
-            if (result.Success)
+        [HttpGet("getbymail")]
+        public IActionResult GetByMail(string email)
+        { 
+            var result = _userService.GetByMail(email);
+            if(result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-
 
         [HttpPost("add")]
-        public IActionResult Add(Activity activity)
+        public IActionResult Add(User user)
         {
-            var result = _activityService.Add(activity);
+            var result = _userService.Add(user);
             if (result.Success)
             {
                 return Ok(result);
@@ -54,11 +53,10 @@ namespace WebAPI.Controllers
             }
         }
 
-
         [HttpDelete("delete")]
-        public IActionResult Delete(Activity activity)
+        public IActionResult Delete(User user)
         {
-            var result = _activityService.Remove(activity);
+            var result = _userService.Delete(user);
             if (result.Success)
             {
                 return Ok(result);
@@ -67,9 +65,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Activity activity)
+        public IActionResult Update(User user)
         {
-            var result = _activityService.Update(activity);
+            var result = _userService.Update(user);
             if (result.Success)
             {
                 return Ok(result);
