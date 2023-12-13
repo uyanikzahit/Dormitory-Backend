@@ -11,7 +11,16 @@ namespace Business.Constants
     {
         //System Messages
         public static string MaintenanceTime = "Sistem Bakımda.";
-        
+
+        //Student Messages
+        public static string StudentAdded = "Öğrencilerin Eklendi";
+        public static string StudentDeleted = "Öğrencilerin Silindi";
+        public static string StudentUpdated = "Öğrencilerin Güncellendi";
+        public static string StudenstListed = "Öğrencilerin Listelendi";
+        public static string StudentListed = "Öğrencilerin Listelendi";
+        public static string StudentDetailsListed = "Öğrencilerin Detayları Listelendi";
+        public static string StudentsDetailsListed = "Öğrencilerin Detayları Listelendi";
+
 
         //User Messages
         public static string UserAdded = "Kullanıcı Eklendi";
@@ -52,6 +61,8 @@ namespace Business.Constants
         public static string RoomsListed = "Oda listelendi";
         public static string RoomListed = "Oda listelendi";
         public static string RoomNumberAlreadyExists = "Bu oda numarasına ait oda mevcut.";
+
+
 
 
     }
