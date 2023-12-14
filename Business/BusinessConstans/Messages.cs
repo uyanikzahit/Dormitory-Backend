@@ -13,11 +13,11 @@ namespace Business.Constants
         public static string MaintenanceTime = "Sistem Bakımda.";
 
         //Student Messages
-        public static string StudentAdded = "Öğrencilerin Eklendi";
-        public static string StudentDeleted = "Öğrencilerin Silindi";
-        public static string StudentUpdated = "Öğrencilerin Güncellendi";
-        public static string StudenstListed = "Öğrencilerin Listelendi";
-        public static string StudentListed = "Öğrencilerin Listelendi";
+        public static string StudentAdded = "Öğrenci Eklendi";
+        public static string StudentDeleted = "Öğrenci Silindi";
+        public static string StudentUpdated = "Öğrenci Güncellendi";
+        public static string StudenstListed = "Öğrenciler Listelendi";
+        public static string StudentListed = "Öğrenci Listelendi";
         public static string StudentDetailsListed = "Öğrencilerin Detayları Listelendi";
         public static string StudentsDetailsListed = "Öğrencilerin Detayları Listelendi";
 

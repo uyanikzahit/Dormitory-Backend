@@ -13,5 +13,7 @@ namespace Entities.Concrete
         public int RoomId { get; set; }
         public int ShcoolId { get; set; }
         public int PermissionId { get; set; }
+
+
     }
 }
