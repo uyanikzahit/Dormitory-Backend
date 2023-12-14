@@ -35,8 +35,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<ActivityManager>().As<IActivityService>();
             builder.RegisterType<EfActivityDal>().As<IActivityDal>();
 
-            builder.RegisterType<StudentManager>().As<IStudentService>();
-            builder.RegisterType<EfStudentDal>().As<IStudentDal>();
+            builder.RegisterType<AnnouncementManager>().As<IAnnouncementService>();
+            builder.RegisterType<EfAnnouncementDal>().As<IAnnouncementDal>();
 
             builder.RegisterType<RoomManager>().As<IRoomService>();
             builder.RegisterType<EfRoomDal>().As<IRoomDal>();

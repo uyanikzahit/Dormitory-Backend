@@ -62,6 +62,13 @@ namespace Business.Constants
         public static string RoomListed = "Oda listelendi";
         public static string RoomNumberAlreadyExists = "Bu oda numarasına ait oda mevcut.";
 
+        //Announcement Messages
+        public static string AnnouncementAdded = "Duyuru başarıyla eklendi.";
+        public static string AnnouncementDeleted = "Duyuru başarıyla silindi.";
+        public static string AnnouncementUpdated = "Duyuru başarıyla güncellendi.";
+        public static string AnnouncementListed = "Duyurular listelendi";
+        public static string AnnouncementsListed = "Duyuru listelendi";
+
 
 
 

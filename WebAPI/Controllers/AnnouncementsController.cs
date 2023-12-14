@@ -7,21 +7,20 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController : ControllerBase
+    public class AnnouncementsController : ControllerBase
     {
-        IStudentService _studentService;
+        IAnnouncementService _announcementService;
 
-        public StudentsController(IStudentService studentService)
+        public AnnouncementsController(IAnnouncementService announcementService)
         {
-            _studentService = studentService;
+            _announcementService = announcementService;
         }
 
-
         [HttpGet("getall")]
-        public IActionResult GetAll() 
+        public IActionResult GetAll()
         {
-            var result = _studentService.GetAll();
-            if(result.Success)
+            var result = _announcementService.GetAll();
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -29,9 +28,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetActivityById(int announcementId)
         {
-            var result = _studentService.GetById(id);
+            var result = _announcementService.GetAnnouncementById(announcementId);
             if (result.Success)
             {
                 return Ok(result);
@@ -40,9 +39,23 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Student student)
+        public IActionResult Add(Announcement announcement)
         {
-            var result = _studentService.Add(student);
+            var result = _announcementService.Add(announcement);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+        [HttpDelete("delete")]
+        public IActionResult Delete(Announcement announcement)
+        {
+            var result = _announcementService.Delete(announcement);
             if (result.Success)
             {
                 return Ok(result);
@@ -54,9 +67,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update(Student student)
+        public IActionResult Update(Announcement announcement)
         {
-            var result = _studentService.Update(student);
+            var result = _announcementService.Update(announcement);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,22 +77,9 @@ namespace WebAPI.Controllers
             else
             {
                 return BadRequest(result);
+            }
+        }
 
-            }
-        }
-        [HttpDelete("delete")]
-        public IActionResult Delete(Student student)
-        {
-            var result = _studentService.Delete(student);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
-        }
     }
 
 }
