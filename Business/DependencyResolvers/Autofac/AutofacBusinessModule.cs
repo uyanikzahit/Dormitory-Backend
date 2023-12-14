@@ -41,6 +41,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<RoomManager>().As<IRoomService>();
             builder.RegisterType<EfRoomDal>().As<IRoomDal>();
 
+            builder.RegisterType<CafeteriaManager>().As<ICafeteriaService>();
+            builder.RegisterType<EfCafeteriaDal>().As<ICafeteriaDal>();
 
 
 
