@@ -21,7 +21,7 @@ namespace Business.Concrete
         {
             _schoolDal = schoolDal;
         }
-        //[SecuredOperation("admin")]
+        [SecuredOperation("admin")]
         public IResult Add(School school)
         {
             _schoolDal.Add(school);

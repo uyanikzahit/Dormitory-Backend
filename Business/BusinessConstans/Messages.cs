@@ -69,6 +69,13 @@ namespace Business.Constants
         public static string AnnouncementListed = "Duyurular listelendi";
         public static string AnnouncementsListed = "Duyuru listelendi";
 
+        //Cafeteria Messages
+        public static string CafeteriatAdded = "Yemek başarıyla eklendi.";
+        public static string CafeteriaDeleted = "Yemek başarıyla silindi.";
+        public static string CafeteriaUpdated = "Yemek başarıyla güncellendi.";
+        public static string CafeteriaListed = "Yemekler listelendi";
+        public static string CafeteriasListed = "Yemek listelendi";
+
 
 
 

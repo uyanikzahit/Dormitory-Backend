@@ -12,6 +12,7 @@ namespace Entities.Concrete
         public int RoomId {  get; set; }
 
         public int StudentId { get; set; }
+
         public int RoomNumber { get; set; }
 
         public string BlokName { get; set; }

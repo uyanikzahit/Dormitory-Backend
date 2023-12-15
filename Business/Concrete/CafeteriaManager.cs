@@ -24,29 +24,29 @@ namespace Business.Concrete
         public IResult Add(Cafeteria cafeteria)
         {
             _cafeteriaDal.Add(cafeteria);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CafeteriatAdded);
         }
 
         public IDataResult<List<Cafeteria>> GetAll()
         {
-            return new SuccessDataResult<List<Cafeteria>>(_cafeteriaDal.GetAll());
+            return new SuccessDataResult<List<Cafeteria>>(_cafeteriaDal.GetAll(), Messages.CafeteriasListed);
         }
 
         public IDataResult<Cafeteria> GetCafeteriaById(int cafeteriaId)
         {
-            return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(b => b.EatId == cafeteriaId));
+            return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(b => b.EatId == cafeteriaId),Messages.CafeteriaListed);
         }
 
         public IResult Remove(Cafeteria cafeteria)
         {
             _cafeteriaDal.Delete(cafeteria);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CafeteriaDeleted);
         }
 
         public IResult Update(Cafeteria cafeteria)
         {
             _cafeteriaDal.Update(cafeteria);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CafeteriaUpdated);
         }
     }
 }

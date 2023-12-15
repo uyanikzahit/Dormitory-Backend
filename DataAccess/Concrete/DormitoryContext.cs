@@ -30,7 +30,6 @@ namespace DataAccess.Concrete
 
         public DbSet<Room> Rooms { get; set; }
 
-        public DbSet<Student> Students { get; set; }
 
 
 
