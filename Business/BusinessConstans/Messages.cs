@@ -73,10 +73,14 @@ namespace Business.Constants
         public static string CafeteriatAdded = "Yemek başarıyla eklendi.";
         public static string CafeteriaDeleted = "Yemek başarıyla silindi.";
         public static string CafeteriaUpdated = "Yemek başarıyla güncellendi.";
-        public static string CafeteriaListed = "Yemekler listelendi";
-        public static string CafeteriasListed = "Yemek listelendi";
+        public static string CafeteriasListed = "Yemekler listelendi";
+        public static string CafeteriaListed = "Yemek listelendi";
 
-
+        //Image Messages
+        public static string UserImageLimit = "Bir kullanıcıya birden fazla resim eklenemez";
+        public static string UserImageDeleted = "Resim silindi";
+        public static string UserImageUpdated = "Resim güncellendi";
+        public static string UserImageAdded = "Resim eklendi";
 
 
     }
