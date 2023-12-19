@@ -44,6 +44,11 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CafeteriaManager>().As<ICafeteriaService>();
             builder.RegisterType<EfCafeteriaDal>().As<ICafeteriaDal>();
 
+            builder.RegisterType<UserImageManager>().As<IUserImageService>();
+            builder.RegisterType<EfUserImageDal>().As<IUserImageDal>();
+
+
+
 
 
 
