@@ -30,6 +30,10 @@ namespace DataAccess.Concrete
         public DbSet<Activity> Activities { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Record> Records { get; set; }
+
+
+
 
 
 

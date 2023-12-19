@@ -4,13 +4,14 @@ using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IRoomDal : IEntityRepository<Room>
+    public interface IRecordDal : IEntityRepository<Record>
     {
-        public List<RoomDetailDto> GetRoomDetails();
+        List<RecordDetailDto> GetRecordDetails(Expression<Func<RecordDetailDto, bool>> filter = null);
     }
 }
