@@ -9,6 +9,8 @@ namespace Entities.Dtos
 {
     public class RecordDetailDto : IDto
     {
+        public int RecordId { get; set; }
+        public DateTime Date { get; set; }
         public int UserId { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }

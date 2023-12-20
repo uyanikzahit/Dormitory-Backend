@@ -13,5 +13,7 @@ namespace DataAccess.Abstract
     public interface IRecordDal : IEntityRepository<Record>
     {
         List<RecordDetailDto> GetRecordDetails(Expression<Func<RecordDetailDto, bool>> filter = null);
+        List<RecordDetailDto> GetRecordByUserAndActivity(int userId, int activityId);
+
     }
 }
