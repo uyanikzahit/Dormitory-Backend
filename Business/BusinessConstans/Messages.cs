@@ -21,15 +21,12 @@ namespace Business.Constants
         public static string StudentDetailsListed = "Öğrencilerin Detayları Listelendi";
         public static string StudentsDetailsListed = "Öğrencilerin Detayları Listelendi";
 
-
         //User Messages
         public static string UserAdded = "Kullanıcı Eklendi";
         public static string UserDeleted = "Kullanıcı Silindi";
         public static string UserUpdated = "Kullanıcı Güncellendi";
         public static string UsersListed = "Kullanıcılar Listelendi";
         public static string UserListed = "Kullanıcı Listelendi";
-
-       
 
         //Process Messages
         public static string AuthorizationDenied = "Yetkiniz yok";
@@ -81,6 +78,15 @@ namespace Business.Constants
         public static string UserImageDeleted = "Resim silindi";
         public static string UserImageUpdated = "Resim güncellendi";
         public static string UserImageAdded = "Resim eklendi";
+
+        //Record Messages
+        public static string RecordAdded = "Kayıt Eklendi";
+        public static string RecordDeleted = "Kayıt Silindi";
+        public static string RecordUpdated = "Kayıt Güncellendi";
+        public static string RecordNameInvalid = "Kayıt İsmi Geçersiz";
+        public static string RecordsListed = "Kayıtlar Listelendi";
+        public static string RecordListed = "Kayıt Listelendi";
+        public static string RecordDetailsListed = "Kayıt Detayları Listelendi";
 
 
     }
