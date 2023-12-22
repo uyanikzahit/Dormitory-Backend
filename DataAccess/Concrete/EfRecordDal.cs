@@ -27,6 +27,7 @@ namespace DataAccess.Concrete
                              select new RecordDetailDto()
                              {
                                  RecordId = r.Id,
+                                 RecordName =r .RecordName,
                                  Date = r.Date,
                                  UserId = u.Id,
                                  Email = u.Email,
@@ -58,6 +59,7 @@ namespace DataAccess.Concrete
                                  ActivityId = a.ActivityId,
                                  ActivityName = a.ActivityName,
                                  Date = a.Date,
+                                 RecordName = r.RecordName
                              };
                 return filter == null
                     ? result.ToList()

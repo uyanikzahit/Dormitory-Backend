@@ -1,7 +1,9 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -23,6 +25,8 @@ namespace Business.Concrete
         {
             _recordDal = recordDal;
         }
+
+        [ValidationAspect(typeof(RecordValidator))]
 
         public IResult Add(Record record)
         {
@@ -116,6 +120,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RecordDetailDto>>(recordDetails, "");
             
         }
+
+        [ValidationAspect(typeof(RecordValidator))]
 
         public IResult Update(Record record)
         {

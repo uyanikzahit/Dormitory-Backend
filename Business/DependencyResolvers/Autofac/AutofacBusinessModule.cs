@@ -47,6 +47,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<UserImageManager>().As<IUserImageService>();
             builder.RegisterType<EfUserImageDal>().As<IUserImageDal>();
 
+            builder.RegisterType<RecordManager>().As<IRecordService>();
+            builder.RegisterType<EfRecordDal>().As<IRecordDal>();
 
 
 
