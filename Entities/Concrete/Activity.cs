@@ -17,7 +17,7 @@ namespace Entities.Concrete
 
         public int ActivityId { get; set; }
         
-        public string ActivityName { get; set; }
+        public string ActivityTitle { get; set; }
 
         public string ActivityDescription { get; set; }
 

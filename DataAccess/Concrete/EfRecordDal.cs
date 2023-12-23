@@ -34,7 +34,7 @@ namespace DataAccess.Concrete
                                  FirstName = u.FirstName,
                                  LastName = u.LastName,
                                  ActivityId = a.ActivityId,
-                                 ActivityName = a.ActivityName,
+                                 ActivityName = a.ActivityTitle,
                              };
                 return result.ToList();
             }
@@ -57,7 +57,7 @@ namespace DataAccess.Concrete
                                  LastName = u.LastName,
                                  Email = u.Email,
                                  ActivityId = a.ActivityId,
-                                 ActivityName = a.ActivityName,
+                                 ActivityName = a.ActivityTitle,
                                  Date = a.Date,
                                  RecordName = r.RecordName
                              };

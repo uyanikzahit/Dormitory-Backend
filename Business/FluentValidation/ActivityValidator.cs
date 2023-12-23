@@ -13,9 +13,9 @@ namespace Business.FluentValidation
     {
         public ActivityValidator() 
         {
-            RuleFor(u => u.ActivityName).NotEmpty();
+            RuleFor(u => u.ActivityTitle).NotEmpty();
             RuleFor(u => u.ActivityDescription).NotEmpty();
-            RuleFor(u => u.ActivityName).MinimumLength(2);
+            RuleFor(u => u.ActivityTitle).MinimumLength(10);
         }
     }
 }

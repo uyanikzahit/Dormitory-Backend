@@ -138,7 +138,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("update")]
+        [HttpPut("update")]
         public IActionResult Update(Record record)
         {
             var result = _recordService.Update(record);

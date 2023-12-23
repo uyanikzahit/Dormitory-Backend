@@ -31,6 +31,7 @@ namespace DataAccess.Concrete
 
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Record> Records { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
 
 

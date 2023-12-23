@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -69,15 +70,12 @@ namespace WebAPI.Controllers
         [HttpPut("update")]
         public IActionResult Update(Announcement announcement)
         {
-            var result = _announcementService.Update(announcement);
-            if (result.Success)
+            using (var db = new DormitoryContext())
             {
-                return Ok(result);
+                db.Update(announcement);
+                db.SaveChanges();
             }
-            else
-            {
-                return BadRequest(result);
-            }
+            return Ok(announcement);
         }
 
     }

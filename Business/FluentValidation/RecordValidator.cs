@@ -16,10 +16,7 @@ namespace Business.FluentValidation
             RuleFor(r=>r.UserId).NotEmpty();
             RuleFor(r => r.ActivityId).NotEmpty();
             RuleFor(r => r.RecordName).NotEmpty();
-
-
-
-
+           
         }
     }
 }
