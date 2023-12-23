@@ -22,6 +22,7 @@ namespace DataAccess.Concrete
 
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
+        public DbSet<Cafeteria> Cafeterias { get; set; }
 
         public DbSet<User> Users { get; set; }
 

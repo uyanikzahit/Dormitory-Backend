@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Entities.Concrete
 {
@@ -11,13 +12,14 @@ namespace Entities.Concrete
     {
         public int EatId { get; set; }
 
-        public DateTime Date { get; set; }
+        public Date Date { get; set; }
 
         public string MorningMenu { get; set; }
 
         public string EveningMenu { get; set; }
 
         public string CommentSuggestion { get; set; }
-        public string Complaint { get; set; }
+
+        public int UserId {  get; set; }
     }
 }
