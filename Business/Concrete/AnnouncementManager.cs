@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
@@ -21,6 +23,7 @@ namespace Business.Concrete
             _announcementDal = announcementDal;
         }
 
+        [ValidationAspect(typeof(AnnouncementValidator))]
         public IResult Add(Announcement announcement)
         {
             _announcementDal.Add(announcement);
@@ -43,6 +46,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.AnnouncementDeleted);
         }
 
+        [ValidationAspect(typeof(AnnouncementValidator))]
         public IResult Update(Announcement announcement)
         {
             _announcementDal.Update(announcement);

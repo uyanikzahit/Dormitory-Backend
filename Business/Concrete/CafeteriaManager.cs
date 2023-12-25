@@ -1,5 +1,9 @@
-﻿using Business.Abstract;
+﻿
+
+using Business.Abstract;
 using Business.Constants;
+using Business.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
@@ -21,6 +25,7 @@ namespace Business.Concrete
             _cafeteriaDal = cafeteriaDal;
         }
 
+        [ValidationAspect(typeof(CafeteriaValidator))]
         public IResult Add(Cafeteria cafeteria)
         {
             _cafeteriaDal.Add(cafeteria);
@@ -43,6 +48,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CafeteriaDeleted);
         }
 
+        [ValidationAspect(typeof(CafeteriaValidator))]
         public IResult Update(Cafeteria cafeteria)
         {
             _cafeteriaDal.Update(cafeteria);

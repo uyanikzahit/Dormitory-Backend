@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -21,6 +23,8 @@ namespace Business.Concrete
         {
             _schoolDal = schoolDal;
         }
+
+        [ValidationAspect(typeof(SchoolValidator))]
         [SecuredOperation("admin")]
         public IResult Add(School school)
         {
@@ -44,6 +48,8 @@ namespace Business.Concrete
             return new SuccessResult(Messages.SchoolDeleted);
         }
 
+        [ValidationAspect(typeof(SchoolValidator))]
+        [SecuredOperation("admin")]
         public IResult Update(School school)
         {
             _schoolDal.Update(school);

@@ -77,7 +77,7 @@ namespace Business.Concrete
 
 
 
-        //İş kuralları
+        //İŞ KURALLARI
 
         //Kullanıcı 1 den fazla resim yüklediğini kontrol eder.
          private IResult CheckIfUserImageLimit(int userId)
