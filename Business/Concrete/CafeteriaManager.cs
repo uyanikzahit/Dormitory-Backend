@@ -1,6 +1,4 @@
-﻿
-
-using Business.Abstract;
+﻿using Business.Abstract;
 using Business.Constants;
 using Business.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -29,7 +27,7 @@ namespace Business.Concrete
         public IResult Add(Cafeteria cafeteria)
         {
             _cafeteriaDal.Add(cafeteria);
-            return new SuccessResult(Messages.CafeteriatAdded);
+            return new SuccessResult(Messages.CafeteriaAdded);
         }
 
         public IDataResult<List<Cafeteria>> GetAll()
@@ -39,7 +37,7 @@ namespace Business.Concrete
 
         public IDataResult<Cafeteria> GetCafeteriaById(int cafeteriaId)
         {
-            return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(b => b.EatId == cafeteriaId),Messages.CafeteriaListed);
+            return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(b => b.Id == cafeteriaId),Messages.CafeteriaListed);
         }
 
         public IResult Remove(Cafeteria cafeteria)

@@ -12,14 +12,6 @@ namespace Business.Constants
         //System Messages
         public static string MaintenanceTime = "Sistem Bakımda.";
 
-        //Student Messages
-        public static string StudentAdded = "Öğrenci Eklendi";
-        public static string StudentDeleted = "Öğrenci Silindi";
-        public static string StudentUpdated = "Öğrenci Güncellendi";
-        public static string StudenstListed = "Öğrenciler Listelendi";
-        public static string StudentListed = "Öğrenci Listelendi";
-        public static string StudentDetailsListed = "Öğrencilerin Detayları Listelendi";
-        public static string StudentsDetailsListed = "Öğrencilerin Detayları Listelendi";
 
         //User Messages
         public static string UserAdded = "Kullanıcı Eklendi";
@@ -67,7 +59,7 @@ namespace Business.Constants
         public static string AnnouncementsListed = "Duyuru listelendi";
 
         //Cafeteria Messages
-        public static string CafeteriatAdded = "Yemek başarıyla eklendi.";
+        public static string CafeteriaAdded = "Yemek başarıyla eklendi.";
         public static string CafeteriaDeleted = "Yemek başarıyla silindi.";
         public static string CafeteriaUpdated = "Yemek başarıyla güncellendi.";
         public static string CafeteriasListed = "Yemekler listelendi";

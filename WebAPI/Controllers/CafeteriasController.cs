@@ -63,7 +63,8 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
+
         public IActionResult Update(Cafeteria cafeteria)
         {
             var result = _cafeteriaService.Update(cafeteria);

@@ -64,7 +64,8 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
+
         public IActionResult Update(School school)
         {
             var result = _schoolService.Update(school);

@@ -10,16 +10,10 @@ namespace Entities.Concrete
 {
     public class Cafeteria : IEntity
     {
-        public int EatId { get; set; }
-
-        public Date Date { get; set; }
-
+        public int Id { get; set; }
         public string MorningMenu { get; set; }
 
         public string EveningMenu { get; set; }
 
-        public string CommentSuggestion { get; set; }
-
-        public int UserId {  get; set; }
     }
 }

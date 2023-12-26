@@ -63,7 +63,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public IActionResult Update(Activity activity)
         {
             var result = _activityService.Update(activity);
