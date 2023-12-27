@@ -34,8 +34,7 @@ namespace DataAccess.Concrete
         public DbSet<Record> Records { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
 
-
-
+        public DbSet<Suggestion> Suggestions { get; set; }
 
 
 

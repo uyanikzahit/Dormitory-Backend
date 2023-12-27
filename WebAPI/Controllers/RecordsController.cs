@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyactivityid")]
         public IActionResult GetRecordByActivityId(int activityId)
         {
-            var result = _recordService.GetRecordsByActiviyId(activityId);
+            var result = _recordService.GetRecordsByActivityId(activityId);
             if (result.Success)
             {
                 return Ok(result);

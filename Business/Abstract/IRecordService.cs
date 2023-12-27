@@ -19,7 +19,7 @@ namespace Business.Abstract
         IDataResult<List<Record>> GetAll();
         IDataResult<Record> GetById(int recordId);
         IDataResult<List<Record>> GetRecordsByUserId(int userId);
-        IDataResult<List<Record>> GetRecordsByActiviyId(int activityId);
+        IDataResult<List<Record>> GetRecordsByActivityId(int activityId);
         IDataResult<List<RecordDetailDto>> GetRecordDetails();
         IDataResult<List<RecordDetailDto>> GetRecordDetailsId(int recordId);
         IDataResult<List<RecordDetailDto>> SeeRecordsByUserIdWithDetails(int userId);

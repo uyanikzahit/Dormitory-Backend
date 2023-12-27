@@ -87,7 +87,7 @@ namespace Business.Concrete
             }
         }
 
-        public IDataResult<List<Record>> GetRecordsByActiviyId(int activityId)
+        public IDataResult<List<Record>> GetRecordsByActivityId(int activityId)
         {
             return new SuccessDataResult<List<Record>>(_recordDal.GetAll(a => a.ActivityId == activityId));
         }
