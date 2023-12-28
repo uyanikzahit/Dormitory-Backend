@@ -1,8 +1,6 @@
-﻿using Business.Abstract;
-using Business.Constants;
+﻿using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
 using Entities.Concrete;
 using Entities.Dtos;
 using System;
@@ -60,14 +58,14 @@ namespace Business.Concrete
         }
         public IDataResult<List<SuggestionDetailDto>> GetSuggestionDetailsId(int suggestionId)
         {
-            List<SuggestionDetailDto> suggestionDetails =_suggestionDal.GetSuggestionDetails(s => s.Id == suggestionId);
+            List<SuggestionDetailDto> suggestionDetails = _suggestionDal.GetSuggestionDetails(s => s.Id == suggestionId);
             if (suggestionDetails == null)
             {
                 return new ErrorDataResult<List<SuggestionDetailDto>>("");
             }
             else
             {
-                return new SuccessDataResult<List<SuggestionDetailDto>>(suggestionId, "");
+                return new SuccessDataResult<List<SuggestionDetailDto>>(suggestionDetails, "");
             }
         }
 

@@ -12,6 +12,6 @@ namespace DataAccess.Abstract
 {
     public interface ISuggestionDal : IEntityRepository<Suggestion>
     {
-        List<RecordDetailDto> GetSuggestionDetails();
+        List<SuggestionDetailDto> GetSuggestionDetails(Expression<Func<SuggestionDetailDto, bool>> filter = null);
     }
 }

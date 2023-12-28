@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace DataAccess.Abstract
 {
     public interface ISuggestionService
     {
@@ -19,7 +19,5 @@ namespace Business.Abstract
         IDataResult<List<SuggestionDetailDto>> GetSuggestionDetails();
         IDataResult<List<SuggestionDetailDto>> GetSuggestionDetailsId(int suggestionId);
         IDataResult<List<Suggestion>> GetSuggestionByUserId(int userId);
-
-
     }
 }

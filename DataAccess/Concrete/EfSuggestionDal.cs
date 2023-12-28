@@ -13,25 +13,27 @@ namespace DataAccess.Concrete
 {
     public class EfSuggestionDal : EfEntityRepositoryBase<Suggestion, DormitoryContext>, ISuggestionDal
     {
-        public List<RecordDetailDto> GetSuggestionDetails()
+        
+        public List<SuggestionDetailDto> GetSuggestionDetails(Expression<Func<SuggestionDetailDto, bool>> filter = null)
         {
-
             using (DormitoryContext context = new DormitoryContext())
             {
                 var result = from s in context.Suggestions
                              join u in context.Users
                                on s.UserId equals u.Id
-                             
 
-                             select new RecordDetailDto
+                             select new SuggestionDetailDto
                              {
                                  UserId = u.Id,
                                  FirstName = u.FirstName,
                                  LastName = u.LastName,
                                  Email = u.Email,
+                                 Id = s.Id,
+
                                  
+
                              };
-                return result.ToList();
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
 
             }
         }

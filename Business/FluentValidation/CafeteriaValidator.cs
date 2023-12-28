@@ -12,13 +12,12 @@ namespace Business.FluentValidation
     {
         public CafeteriaValidator()
         {
-            RuleFor(c => c.CommentSuggestion).NotEmpty();
-            RuleFor(c => c.CommentSuggestion).MinimumLength(3);
+            
             RuleFor(c => c.EveningMenu).NotEmpty();
             RuleFor(c => c.EveningMenu).MinimumLength(10);
             RuleFor(c => c.MorningMenu).NotEmpty();
             RuleFor(c => c.MorningMenu).MinimumLength(10);
-            RuleFor(c => c.Date).NotEmpty();
+
 
         }
     }
