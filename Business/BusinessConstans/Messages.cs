@@ -81,12 +81,12 @@ namespace Business.Constants
         public static string RecordDetailsListed = "Kayıt Detayları Listelendi";
 
         //Record Messages
-        public static string SuggestionAdded = "Öneri Eklendi";
-        public static string SuggestionDeleted = "Öneri Silindi";
-        public static string SuggestionUpdated = "Öneri Güncellendi";
-        public static string SuggestionsListed = "Öneriler Listelendi";
-        public static string SuggestionListed = "Öneri Listelendi";
-        public static string SuggestionDetailsListed = "Öneri Detayları Listelendi";
+        public static string SuggestionAdded = "Yorum Eklendi";
+        public static string SuggestionDeleted = "Yorum Silindi";
+        public static string SuggestionUpdated = "Yorum Güncellendi";
+        public static string SuggestionsListed = "Yorumlar Listelendi";
+        public static string SuggestionListed = "Yorum Listelendi";
+        public static string SuggestionDetailsListed = "Yorum Detayları Listelendi";
 
 
     }

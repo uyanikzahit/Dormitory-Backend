@@ -49,9 +49,9 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<RecordManager>().As<IRecordService>();
             builder.RegisterType<EfRecordDal>().As<IRecordDal>();
-
-            //builder.RegisterType<SuggestionManager>().As<ISuggestionService>();
-            //builder.RegisterType<EfSuggestionDal>().As<ISuggestionDal>();
+            
+            builder.RegisterType<SuggestionManager>().As<ISuggestionService>();
+            builder.RegisterType<EfSuggestionDal>().As<ISuggestionDal>();
 
 
 
