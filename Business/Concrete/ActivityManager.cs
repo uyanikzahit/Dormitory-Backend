@@ -26,7 +26,7 @@ namespace Business.Concrete
             _activityDal = activityDal;
         }
 
-        [ValidationAspect(typeof(ActivityValidator))]
+        //[ValidationAspect(typeof(ActivityValidator))]
         public IResult Add(Activity activity)
         {
             _activityDal.Add(activity);

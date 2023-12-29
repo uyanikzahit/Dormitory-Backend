@@ -4,6 +4,7 @@ using Business.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,18 +21,27 @@ namespace Business.Concrete
     public class RecordManager : IRecordService
     {
         IRecordDal _recordDal;
+        IUserDal _userDal;
 
-        public RecordManager(IRecordDal recordDal)
+        public RecordManager(IRecordDal recordDal, IUserDal userDal)
         {
             _recordDal = recordDal;
+            _userDal = userDal;
         }
 
         [ValidationAspect(typeof(RecordValidator))]
 
         public IResult Add(Record record)
         {
+            //var userExists = _userDal.Get(u=>u.Id == record.UserId);
+            //if (userExists == null)
+            //{
+            //    return new ErrorResult(Messages.UserNotFound);
+            //}
+
             _recordDal.Add(record);
             return new SuccessResult(Messages.RecordAdded);
+            
         }
 
         public IResult Delete(Record record)

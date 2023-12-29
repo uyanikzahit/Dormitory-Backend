@@ -14,9 +14,9 @@ namespace Business.FluentValidation
         {
             RuleFor(u => u.FloorNumber).NotEmpty();
             RuleFor(u => u.RoomNumber).NotEmpty();
-            RuleFor(u => u.BlokName).NotEmpty();
+            RuleFor(u => u.BlockName).NotEmpty();
 
-            RuleFor(u => u.BlokName).MinimumLength(1);
+            RuleFor(u => u.BlockName).MinimumLength(1);
         }
 
     }

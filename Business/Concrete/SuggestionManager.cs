@@ -1,4 +1,6 @@
 ﻿using Business.Constants;
+using Business.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,6 +22,7 @@ namespace Business.Concrete
             _suggestionDal = suggestionDal;
         }
 
+        [ValidationAspect(typeof(SuggestionValidator))]
         public IResult Add(Suggestion suggestion)
         {
             _suggestionDal.Add(suggestion);
@@ -69,6 +72,7 @@ namespace Business.Concrete
             }
         }
 
+        [ValidationAspect(typeof(SuggestionValidator))]
         public IResult Update(Suggestion suggestion)
         {
             _suggestionDal.Update(suggestion);
