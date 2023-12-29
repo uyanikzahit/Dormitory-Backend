@@ -4,6 +4,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -18,11 +19,13 @@ namespace Business.Concrete
     {
         IUserImageDal _userImageDal;
         IFileHelper _fileHelper;
+        IUserDal _userDal;
 
-        public UserImageManager(IUserImageDal userImageDal, IFileHelper fileHelper)
+        public UserImageManager(IUserImageDal userImageDal, IFileHelper fileHelper, IUserDal userDal)
         {
             _userImageDal = userImageDal;
             _fileHelper = fileHelper;
+            _userDal = userDal;
         }
 
         public IResult Add(IFormFile file, UserImage userImage)
@@ -31,6 +34,12 @@ namespace Business.Concrete
             if (result != null)
             {
                 return result;
+            }
+            //Güncellenecek.
+            var userExists = _userDal.Get(u => u.Id == userImage.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
             }
             userImage.ImagePath = _fileHelper.Upload(file, PathConstants.ImagePath);
             userImage.Date = DateTime.Now;
@@ -69,6 +78,11 @@ namespace Business.Concrete
 
         public IResult Update(IFormFile file, UserImage userImage)
         {
+            var userExists = _userDal.Get(u => u.Id == userImage.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
             userImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagePath + userImage.ImagePath, PathConstants.ImagePath);
             userImage.Date = DateTime.Now;
             _userImageDal.Update(userImage);

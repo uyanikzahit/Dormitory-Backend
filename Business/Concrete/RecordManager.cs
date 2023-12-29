@@ -33,11 +33,11 @@ namespace Business.Concrete
 
         public IResult Add(Record record)
         {
-            //var userExists = _userDal.Get(u=>u.Id == record.UserId);
-            //if (userExists == null)
-            //{
-            //    return new ErrorResult(Messages.UserNotFound);
-            //}
+            var userExists = _userDal.Get(u => u.Id == record.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
 
             _recordDal.Add(record);
             return new SuccessResult(Messages.RecordAdded);
@@ -135,6 +135,11 @@ namespace Business.Concrete
 
         public IResult Update(Record record)
         {
+            var userExists = _userDal.Get(u => u.Id == record.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
             _recordDal.Update(record);
             return new SuccessResult(Messages.RecordUpdated);
         }

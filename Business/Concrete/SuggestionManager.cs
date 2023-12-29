@@ -16,15 +16,22 @@ namespace Business.Concrete
     public class SuggestionManager : ISuggestionService
     {
         ISuggestionDal _suggestionDal;
+        IUserDal _userDal;
 
-        public SuggestionManager(ISuggestionDal suggestionDal)
+        public SuggestionManager(ISuggestionDal suggestionDal, IUserDal userDal)
         {
             _suggestionDal = suggestionDal;
+            _userDal = userDal;
         }
 
         [ValidationAspect(typeof(SuggestionValidator))]
         public IResult Add(Suggestion suggestion)
         {
+            var userExists = _userDal.Get(u => u.Id == suggestion.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
             _suggestionDal.Add(suggestion);
             return new SuccessResult(Messages.SuggestionAdded);
         }
@@ -75,6 +82,11 @@ namespace Business.Concrete
         [ValidationAspect(typeof(SuggestionValidator))]
         public IResult Update(Suggestion suggestion)
         {
+            var userExists = _userDal.Get(u => u.Id == suggestion.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
             _suggestionDal.Update(suggestion);
             return new SuccessResult(Messages.SchoolUpdated);
         }

@@ -11,7 +11,7 @@ namespace Entities.Concrete
     {
         public int RoomId {  get; set; }
 
-        public int StudentId { get; set; }
+        public int UserId { get; set; }
 
         public int RoomNumber { get; set; }
 

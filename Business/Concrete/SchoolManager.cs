@@ -18,16 +18,23 @@ namespace Business.Concrete
     public class SchoolManager : ISchoolService
     {
         ISchoolDal _schoolDal;
+        IUserDal _userDal;
 
-        public SchoolManager(ISchoolDal schoolDal)
+        public SchoolManager(ISchoolDal schoolDal, IUserDal userDal)
         {
             _schoolDal = schoolDal;
+            _userDal = userDal;
         }
 
         [ValidationAspect(typeof(SchoolValidator))]
         [SecuredOperation("admin")]
         public IResult Add(School school)
         {
+            var userExists = _userDal.Get(u => u.Id == school.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
             _schoolDal.Add(school);
             return new SuccessResult(Messages.SchoolAdded);
         }
@@ -52,6 +59,11 @@ namespace Business.Concrete
         [SecuredOperation("admin")]
         public IResult Update(School school)
         {
+            var userExists = _userDal.Get(u => u.Id == school.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
             _schoolDal.Update(school);
             return new SuccessResult(Messages.SchoolUpdated);
         }

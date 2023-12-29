@@ -19,10 +19,12 @@ namespace Business.Concrete
     public class RoomManager : IRoomService
     {
         IRoomDal _roomDal;
+        IUserDal _userDal;
 
-        public RoomManager(IRoomDal roomDal)
+        public RoomManager(IRoomDal roomDal, IUserDal userDal)
         {
             _roomDal = roomDal;
+            _userDal = userDal;
         }
 
         [ValidationAspect(typeof(RoomValidator))]
@@ -32,6 +34,11 @@ namespace Business.Concrete
             if (result != null)
             {
                 return result;
+            }
+            var userExists = _userDal.Get(u => u.Id == room.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
             }
 
             return new SuccessResult(Messages.RoomAdded);
@@ -60,6 +67,11 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RoomValidator))]
         public IResult Update(Room room)
         {
+            var userExists = _userDal.Get(u => u.Id == room.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
             _roomDal.Update(room);
             return new SuccessResult(Messages.RoomUpdated);
         }
