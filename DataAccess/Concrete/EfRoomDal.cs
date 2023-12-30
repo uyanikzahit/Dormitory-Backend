@@ -18,7 +18,7 @@ namespace DataAccess.Concrete
             {
                 var roomDetails = from r in context.Rooms
                                   join u in context.Users
-                                  on r.StudentId equals u.Id
+                                  on r.UserId equals u.Id
                                   select new RoomDetailDto
                                   {
                                       Email = u.Email,

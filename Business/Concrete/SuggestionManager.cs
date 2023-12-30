@@ -1,6 +1,7 @@
 ﻿using Business.Constants;
 using Business.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -27,13 +28,20 @@ namespace Business.Concrete
         [ValidationAspect(typeof(SuggestionValidator))]
         public IResult Add(Suggestion suggestion)
         {
-            var userExists = _userDal.Get(u => u.Id == suggestion.UserId);
-            if (userExists == null)
+            IResult result = BusinessRules.Run(ChechIfUserExists(suggestion.UserId));
+            if (result == null)
             {
-                return new ErrorResult(Messages.UserNotFound);
+                return result;
             }
-            _suggestionDal.Add(suggestion);
-            return new SuccessResult(Messages.SuggestionAdded);
+            return new SuccessResult();
+
+            //var userExists = _userDal.Get(u => u.Id == suggestion.UserId);
+            //if (userExists == null)
+            //{
+            //    return new ErrorResult(Messages.UserNotFound);
+            //}
+            //_suggestionDal.Add(suggestion);
+            //return new SuccessResult(Messages.SuggestionAdded);
         }
 
         public IResult Delete(Suggestion suggestion)
@@ -89,6 +97,16 @@ namespace Business.Concrete
             }
             _suggestionDal.Update(suggestion);
             return new SuccessResult(Messages.SchoolUpdated);
+        }
+
+        private IResult ChechIfUserExists(int userId)
+        {
+            var userExists = _userDal.Get(u => u.Id == userId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
+            return new SuccessResult();
         }
     }
 }

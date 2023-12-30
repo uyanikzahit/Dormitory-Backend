@@ -16,7 +16,7 @@ namespace Business.FluentValidation
             RuleFor(s => s.SchoolName).MinimumLength(2);
             RuleFor(s => s.SchoolSection).NotEmpty();
             RuleFor(s => s.SchoolSection).MinimumLength(2);
-            RuleFor(s => s.StudentId).NotEmpty();
+            RuleFor(s => s.UserId).NotEmpty();
 
         }
     }
