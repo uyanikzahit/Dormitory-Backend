@@ -25,24 +25,7 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        [ValidationAspect(typeof(SuggestionValidator))]
-        public IResult Add(Suggestion suggestion)
-        {
-            IResult result = BusinessRules.Run(ChechIfUserExists(suggestion.UserId));
-            if (result == null)
-            {
-                return result;
-            }
-            return new SuccessResult();
-
-            //var userExists = _userDal.Get(u => u.Id == suggestion.UserId);
-            //if (userExists == null)
-            //{
-            //    return new ErrorResult(Messages.UserNotFound);
-            //}
-            //_suggestionDal.Add(suggestion);
-            //return new SuccessResult(Messages.SuggestionAdded);
-        }
+        
 
         public IResult Delete(Suggestion suggestion)
         {
@@ -99,6 +82,28 @@ namespace Business.Concrete
             return new SuccessResult(Messages.SchoolUpdated);
         }
 
+
+        [ValidationAspect(typeof(SuggestionValidator))]
+        public IResult Add(Suggestion suggestion)
+        {
+            //IResult result = BusinessRules.Run(ChechIfUserExists(suggestion.UserId));
+            //if (result == null)
+            //{
+            //    return result;
+            //}
+            //return new SuccessResult();
+
+            var userExists = _userDal.Get(u => u.Id == suggestion.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
+            _suggestionDal.Add(suggestion);
+            return new SuccessResult(Messages.SuggestionAdded);
+        }
+
+
+        //Yapılacak öneride kullanıcı eklerken kullanıcının olduğunu kontrol eden business kuralı.
         private IResult ChechIfUserExists(int userId)
         {
             var userExists = _userDal.Get(u => u.Id == userId);

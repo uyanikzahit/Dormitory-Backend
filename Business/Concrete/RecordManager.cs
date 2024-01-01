@@ -22,11 +22,13 @@ namespace Business.Concrete
     {
         IRecordDal _recordDal;
         IUserDal _userDal;
+        IActivityDal _activityDal;
 
-        public RecordManager(IRecordDal recordDal, IUserDal userDal)
+        public RecordManager(IRecordDal recordDal, IUserDal userDal, IActivityDal activityDal)
         {
             _recordDal = recordDal;
             _userDal = userDal;
+            _activityDal = activityDal;
         }
 
         [ValidationAspect(typeof(RecordValidator))]
@@ -34,13 +36,22 @@ namespace Business.Concrete
         public IResult Add(Record record)
         {
             var userExists = _userDal.Get(u => u.Id == record.UserId);
+            var activityExists = _activityDal.Get(a => a.ActivityId == record.ActivityId);
             if (userExists == null)
             {
                 return new ErrorResult(Messages.UserNotFound);
             }
 
-            _recordDal.Add(record);
-            return new SuccessResult(Messages.RecordAdded);
+            else if (activityExists == null)
+            {
+                return new ErrorResult(Messages.ActivityNotFound);
+            }
+
+            else
+            {
+                _recordDal.Add(record);
+                return new SuccessResult(Messages.RecordAdded);
+            }
             
         }
 
@@ -136,12 +147,21 @@ namespace Business.Concrete
         public IResult Update(Record record)
         {
             var userExists = _userDal.Get(u => u.Id == record.UserId);
+            var activityExists = _activityDal.Get(a => a.ActivityId == record.ActivityId);
             if (userExists == null)
             {
                 return new ErrorResult(Messages.UserNotFound);
             }
-            _recordDal.Update(record);
-            return new SuccessResult(Messages.RecordUpdated);
+            else if (activityExists == null)
+            {
+                return new ErrorResult(Messages.ActivityNotFound);
+            }
+            else
+            {
+                _recordDal.Update(record);
+                return new SuccessResult(Messages.RecordUpdated);
+            }
+            
         }
     }
 }
