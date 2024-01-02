@@ -35,6 +35,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Cafeteria>>(_cafeteriaDal.GetAll(), Messages.CafeteriasListed);
         }
 
+        public IDataResult<Cafeteria> GetCafeteriaByDate(DateTime dateTime)
+        {
+            return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(c => c.Date == dateTime), Messages.CafeteriaListedByDate);
+        }
+
         public IDataResult<Cafeteria> GetCafeteriaById(int cafeteriaId)
         {
             return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(b => b.Id == cafeteriaId),Messages.CafeteriaListed);

@@ -65,6 +65,7 @@ namespace Business.Constants
         public static string CafeteriaUpdated = "Yemek başarıyla güncellendi.";
         public static string CafeteriasListed = "Yemekler listelendi";
         public static string CafeteriaListed = "Yemek listelendi";
+        public static string CafeteriaListedByDate = "Tarihe göre menüler listelendi";
 
         //Image Messages
         public static string UserImageLimit = "Bir kullanıcıya birden fazla resim eklenemez";

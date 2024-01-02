@@ -15,5 +15,8 @@ namespace Business.Abstract
         IResult Remove(Cafeteria cafeteria);
         IResult Update(Cafeteria cafeteria);
         IDataResult<Cafeteria> GetCafeteriaById(int cafeteriaId);
+        IDataResult<Cafeteria> GetCafeteriaByDate(DateTime dateTime);
+
+
     }
 }
