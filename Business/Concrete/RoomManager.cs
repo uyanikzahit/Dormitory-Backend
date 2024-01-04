@@ -79,11 +79,11 @@ namespace Business.Concrete
 
         private IResult CheckIfRoomNumberExists(int roomNumber)
         {
-            var result = _roomDal.GetAll(p => p.RoomNumber == roomNumber).Any();
-            if (result)
-            {
-                return new ErrorResult(Messages.RoomNumberAlreadyExists);
-            }
+            //var result = _roomDal.GetAll(p => p.RoomNumber == roomNumber).Any();
+            //if (result)
+            //{
+            //    return new ErrorResult(Messages.RoomNumberAlreadyExists);
+            //}
             return new SuccessResult();
         }
     }
