@@ -36,7 +36,9 @@ namespace DataAccess.Concrete
 
         public DbSet<Suggestion> Suggestions { get; set; }
 
-        public DbSet<UserImage> UserImages { get; set; }
+        public DbSet<UserImage> UserImages { get; set; },
+        public DbSet<Work> Works { get; set; }
+
 
 
 
