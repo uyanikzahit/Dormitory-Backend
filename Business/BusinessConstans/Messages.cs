@@ -90,6 +90,12 @@ namespace Business.Constants
         public static string SuggestionListed = "Yorum Listelendi";
         public static string SuggestionDetailsListed = "Yorum Detayları Listelendi";
 
+        //Work Messages
+        public static string WorkAdded = "İş Eklendi";
+        public static string WorkDeleted = "İş Silindi";
+        public static string WorkUpdated = "İş Güncellendi";
+        public static string WorksListed = "İşler Listelendi";
+        public static string WorkListed = "İş Listelendi";
 
     }
 }

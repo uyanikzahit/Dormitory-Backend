@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -11,29 +14,41 @@ namespace Business.Concrete
 {
     public class WorkManager : IWorkService
     {
+        IWorkDal _workDal;
+
+        public WorkManager(IWorkDal workDal)
+        {
+            _workDal = workDal;
+        }
+
         public IResult Add(Work work)
         {
-            throw new NotImplementedException();
+            _workDal.Add(work);
+            return new SuccessResult(Messages.WorkAdded);
         }
 
         public IResult Delete(Work work)
         {
-            throw new NotImplementedException();
+            _workDal.Delete(work);
+            return new SuccessResult(Messages.WorkDeleted);
         }
 
         public IDataResult<List<Work>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Work>>(_workDal.GetAll(), Messages.WorksListed);
+
         }
 
         public IDataResult<Work> GetById(int workId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Work>(_workDal.Get(b => b.Id == workId), Messages.WorkListed);
+
         }
 
         public IResult Update(Work work)
         {
-            throw new NotImplementedException();
+            _workDal.Update(work);
+            return new SuccessResult(Messages.WorkUpdated);
         }
     }
 }
