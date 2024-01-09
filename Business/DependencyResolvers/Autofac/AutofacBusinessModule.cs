@@ -53,6 +53,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<SuggestionManager>().As<ISuggestionService>();
             builder.RegisterType<EfSuggestionDal>().As<ISuggestionDal>();
 
+            builder.RegisterType<WorkManager>().As<IWorkService>();
+            builder.RegisterType<EfWorkDal>().As<IWorkDal>();
+
 
 
 
