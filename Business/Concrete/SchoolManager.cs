@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -39,6 +40,8 @@ namespace Business.Concrete
             return new SuccessResult(Messages.SchoolAdded);
         }
 
+
+        [CacheAspect]
         public IDataResult<List<School>> GetAll()
         {
       

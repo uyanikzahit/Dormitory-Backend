@@ -62,6 +62,7 @@ namespace Business.Concrete
         }
 
         [PerformanceAspect(7)]
+        [CacheAspect]
         public IDataResult<List<Record>> GetAll()
         {
             if (DateTime.Now.Hour == 23.00)
@@ -81,11 +82,15 @@ namespace Business.Concrete
             return new SuccessDataResult<Record>(_recordDal.Get(r=>r.Id==recordId));
         }
 
+        [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<RecordDetailDto>> GetRecordByUserAndActivity(int userId, int activityId)
         {
             return new SuccessDataResult<List<RecordDetailDto>>(_recordDal.GetRecordByUserAndActivity(userId, activityId));
         }
 
+        [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<RecordDetailDto>> GetRecordDetails()
         {
             if (DateTime.Now.Hour == 22)
@@ -95,6 +100,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RecordDetailDto>>(_recordDal.GetRecordDetails(), Messages.RecordDetailsListed);
         }
 
+        [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<RecordDetailDto>> GetRecordDetailsId(int recordId)
         {
             List<RecordDetailDto> recordDetails = _recordDal.GetRecordDetails(c => c.RecordId == recordId);
@@ -108,16 +115,22 @@ namespace Business.Concrete
             }
         }
 
+        [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<Record>> GetRecordsByActivityId(int activityId)
         {
             return new SuccessDataResult<List<Record>>(_recordDal.GetAll(a => a.ActivityId == activityId));
         }
 
+        [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<Record>> GetRecordsByUserId(int userId)
         {
             return new SuccessDataResult<List<Record>>(_recordDal.GetAll(u=>u.UserId == userId));
         }
 
+        [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<RecordDetailDto>> SeeRecordsByActivityIdWithDetails(int activityId)
         {
             List<RecordDetailDto> recordDetails = _recordDal.GetRecordDetails(c => c.ActivityId == activityId);
@@ -131,6 +144,9 @@ namespace Business.Concrete
             }
         }
 
+
+        [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<RecordDetailDto>> SeeRecordsByUserIdWithDetails(int userId)
         {
             List<RecordDetailDto> recordDetails = _recordDal.GetRecordDetails(c => c.UserId == userId);
@@ -142,8 +158,8 @@ namespace Business.Concrete
             
         }
 
-        [ValidationAspect(typeof(RecordValidator))]
 
+        [ValidationAspect(typeof(RecordValidator))]
         public IResult Update(Record record)
         {
             var userExists = _userDal.Get(u => u.Id == record.UserId);

@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
@@ -20,6 +23,9 @@ namespace Business.Concrete
         {
             _workDal = workDal;
         }
+
+        [ValidationAspect(typeof(WorkValidator))]
+        [SecuredOperation("admin")]
 
         public IResult Add(Work work)
         {
@@ -45,6 +51,9 @@ namespace Business.Concrete
 
         }
 
+
+        [ValidationAspect(typeof(WorkValidator))]
+        [SecuredOperation("admin")]
         public IResult Update(Work work)
         {
             _workDal.Update(work);

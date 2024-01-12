@@ -16,7 +16,5 @@ namespace Entities.Concrete
         public string WorkDescription { get; set; }
         public Date Date { get; set; }
 
-
-
     }
 }
