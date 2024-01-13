@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -24,26 +25,33 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CafeteriaValidator))]
+        [CacheRemoveAspect("CafeteriaService.Get")]
         public IResult Add(Cafeteria cafeteria)
         {
             _cafeteriaDal.Add(cafeteria);
             return new SuccessResult(Messages.CafeteriaAdded);
         }
 
+
+        [CacheAspect]
         public IDataResult<List<Cafeteria>> GetAll()
         {
             return new SuccessDataResult<List<Cafeteria>>(_cafeteriaDal.GetAll(), Messages.CafeteriasListed);
         }
 
+        [CacheAspect]
         public IDataResult<Cafeteria> GetCafeteriaByDate(DateTime dateTime)
         {
             return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(c => c.Date == dateTime), Messages.CafeteriaListedByDate);
         }
 
+
+        [CacheAspect]
         public IDataResult<Cafeteria> GetCafeteriaById(int cafeteriaId)
         {
             return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(b => b.Id == cafeteriaId),Messages.CafeteriaListed);
         }
+
 
         public IResult Remove(Cafeteria cafeteria)
         {
@@ -52,6 +60,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CafeteriaValidator))]
+        [CacheRemoveAspect("CafeteriaService.Get")]
         public IResult Update(Cafeteria cafeteria)
         {
             _cafeteriaDal.Update(cafeteria);

@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -26,12 +27,13 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(WorkValidator))]
         [SecuredOperation("admin")]
-
+        [CacheRemoveAspect("WorkService.Get")]
         public IResult Add(Work work)
         {
             _workDal.Add(work);
             return new SuccessResult(Messages.WorkAdded);
         }
+
 
         public IResult Delete(Work work)
         {
@@ -39,12 +41,15 @@ namespace Business.Concrete
             return new SuccessResult(Messages.WorkDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Work>> GetAll()
         {
             return new SuccessDataResult<List<Work>>(_workDal.GetAll(), Messages.WorksListed);
 
         }
 
+
+        [CacheAspect]
         public IDataResult<Work> GetById(int workId)
         {
             return new SuccessDataResult<Work>(_workDal.Get(b => b.Id == workId), Messages.WorkListed);
@@ -54,6 +59,8 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(WorkValidator))]
         [SecuredOperation("admin")]
+        [CacheRemoveAspect("WorkService.Get")]
+
         public IResult Update(Work work)
         {
             _workDal.Update(work);

@@ -32,6 +32,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(RecordValidator))]
+        [CacheRemoveAspect("RecordService.Get")]
 
         public IResult Add(Record record)
         {
@@ -160,6 +161,8 @@ namespace Business.Concrete
 
 
         [ValidationAspect(typeof(RecordValidator))]
+        [CacheRemoveAspect("RecordService.Get")]
+
         public IResult Update(Record record)
         {
             var userExists = _userDal.Get(u => u.Id == record.UserId);

@@ -29,6 +29,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(SchoolValidator))]
         [SecuredOperation("admin")]
+        [CacheRemoveAspect("SchoolService.Get")]
         public IResult Add(School school)
         {
             //var userExists = _userDal.Get(u => u.Id == school.UserId);
@@ -47,10 +48,14 @@ namespace Business.Concrete
       
             return new SuccessDataResult<List<School>>(_schoolDal.GetAll(),Messages.SchoolsListed);
         }
+
+
+        [CacheAspect]
         public IDataResult<School> GetShcoolById(int schoolId)
         {
             return new SuccessDataResult<School>(_schoolDal.Get(b => b.SchoolId ==schoolId),(Messages.SchoolListed));
         }
+
 
         public IResult Remove(School school)
         {
@@ -60,6 +65,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(SchoolValidator))]
         [SecuredOperation("admin")]
+        [CacheRemoveAspect("SchoolService.Get")]
         public IResult Update(School school)
         {
             //var userExists = _userDal.Get(u => u.Id == school.UserId);

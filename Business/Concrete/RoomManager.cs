@@ -28,6 +28,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(RoomValidator))]
+        [CacheRemoveAspect("RoomService.Get")]
         public IResult Add(Room room)
         {
             IResult result = BusinessRules.Run(CheckIfRoomNumberExists(room.RoomNumber));
@@ -65,6 +66,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(RoomValidator))]
+        [CacheRemoveAspect("RoomService.Get")]
         public IResult Update(Room room)
         {
             var userExists = _userDal.Get(u => u.Id == room.UserId);
