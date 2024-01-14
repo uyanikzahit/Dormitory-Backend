@@ -27,6 +27,7 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+
         [ValidationAspect(typeof(SchoolValidator))]
         [SecuredOperation("admin")]
         [CacheRemoveAspect("SchoolService.Get")]
@@ -42,12 +43,14 @@ namespace Business.Concrete
         }
 
 
+
         [CacheAspect]
         public IDataResult<List<School>> GetAll()
         {
       
             return new SuccessDataResult<List<School>>(_schoolDal.GetAll(),Messages.SchoolsListed);
         }
+
 
 
         [CacheAspect]

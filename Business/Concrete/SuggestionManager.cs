@@ -1,5 +1,6 @@
 ﻿using Business.Constants;
 using Business.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -25,30 +26,34 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        
 
+        [CacheRemoveAspect("SuggestionService.Get")]
         public IResult Delete(Suggestion suggestion)
         {
             _suggestionDal.Delete(suggestion);
             return new SuccessResult(Messages.SuggestionDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Suggestion>> GetAll()
         {
             return new SuccessDataResult<List<Suggestion>>(_suggestionDal.GetAll(), Messages.SuggestionsListed);
         }
 
+        [CacheAspect]
         public IDataResult<Suggestion> GetById(int suggestionId)
         {
             return new SuccessDataResult<Suggestion>(_suggestionDal.Get(s => s.Id == suggestionId));
         }
 
+        [CacheAspect]
         public IDataResult<List<Suggestion>> GetSuggestionByUserId(int userId)
         {
             return new SuccessDataResult<List<Suggestion>>(_suggestionDal.GetAll(u => u.UserId == userId));
 
         }
 
+        [CacheAspect]
         public IDataResult<List<SuggestionDetailDto>> GetSuggestionDetails()
         {
             if (DateTime.Now.Hour == 22)
@@ -57,6 +62,8 @@ namespace Business.Concrete
             }
             return new SuccessDataResult<List<SuggestionDetailDto>>(_suggestionDal.GetSuggestionDetails(), Messages.SuggestionDetailsListed);
         }
+
+        [CacheAspect]
         public IDataResult<List<SuggestionDetailDto>> GetSuggestionDetailsId(int suggestionId)
         {
             List<SuggestionDetailDto> suggestionDetails = _suggestionDal.GetSuggestionDetails(s => s.Id == suggestionId);
@@ -83,6 +90,7 @@ namespace Business.Concrete
         }
 
 
+        [CacheRemoveAspect("SuggestionService.Get")]
         [ValidationAspect(typeof(SuggestionValidator))]
         public IResult Add(Suggestion suggestion)
         {

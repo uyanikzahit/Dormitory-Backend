@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
@@ -28,6 +29,8 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+
+        [CacheRemoveAspect("UserImageService.Get")]
         public IResult Add(IFormFile file, UserImage userImage)
         {
             IResult result = BusinessRules.Run(CheckIfUserImageLimit(userImage.Id));
@@ -47,6 +50,8 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserImageAdded);
         }
 
+
+        [CacheRemoveAspect("UserImageService.Get")]
         public IResult Delete(UserImage userImage)
         {
             _fileHelper.Delete(PathConstants.ImagePath + userImage.ImagePath);
@@ -54,18 +59,22 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserImageDeleted);
         }
 
+
+        [CacheAspect]
         public IDataResult<List<UserImage>> GetAll()
         {
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll());
 
         }
 
+        [CacheAspect]
         public IDataResult<UserImage> GetByImageId(int imageId)
         {
             return new SuccessDataResult<UserImage>(_userImageDal.Get(c => c.Id == imageId));
 
         }
 
+        [CacheAspect]
         public IDataResult<List<UserImage>> GetByUserId(int userId)
         {
             var result = BusinessRules.Run(CheckUserImageExists(userId));
@@ -76,6 +85,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(u => u.Id == userId));
         }
 
+        [CacheRemoveAspect("UserImageService.Get")]
         public IResult Update(IFormFile file, UserImage userImage)
         {
             var userExists = _userDal.Get(u => u.Id == userImage.UserId);
