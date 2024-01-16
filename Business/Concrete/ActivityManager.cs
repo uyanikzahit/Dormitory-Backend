@@ -26,12 +26,15 @@ namespace Business.Concrete
             _activityDal = activityDal;
         }
 
-        //[ValidationAspect(typeof(ActivityValidator))]
+
+        [ValidationAspect(typeof(ActivityValidator))]
+        [CacheRemoveAspect("ActivitysService.Get")]
         public IResult Add(Activity activity)
         {
             _activityDal.Add(activity);
             return new SuccessResult();
         }
+
 
         [CacheAspect]
         [PerformanceAspect(7)]
@@ -40,6 +43,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Activity>>(_activityDal.GetAll(), Messages.ActivitiesListed);
         }
 
+
         [CacheAspect]
         [PerformanceAspect(7)]
         public IDataResult<Activity> GetActivityById(int activityId)
@@ -47,13 +51,19 @@ namespace Business.Concrete
             return new SuccessDataResult<Activity>(_activityDal.Get(c => c.ActivityId == activityId), Messages.ActivityListed);
         }
 
+
+
+        [CacheRemoveAspect("ActivitysService.Get")]
         public IResult Remove(Activity activity)
         {
             _activityDal.Delete(activity);
             return new SuccessResult(Messages.ActivityDeleted);
 
         }
+
+
         [ValidationAspect(typeof(ActivityValidator))]
+        [CacheRemoveAspect("ActivitysService.Get")]
         public IResult Update(Activity activity)
         {
             _activityDal.Update(activity);

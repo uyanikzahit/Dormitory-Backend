@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -24,22 +25,29 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(AnnouncementValidator))]
+        [CacheRemoveAspect("AnnouncementService.Get")]
         public IResult Add(Announcement announcement)
         {
             _announcementDal.Add(announcement);
             return new SuccessResult(Messages.AnnouncementAdded);
         }
 
+
+        [CacheAspect]
         public IDataResult<List<Announcement>> GetAll()
         {
             return new SuccessDataResult<List<Announcement>>(_announcementDal.GetAll(), Messages.AnnouncementsListed);
         }
 
+
+        [CacheAspect]
         public IDataResult<Announcement> GetAnnouncementById(int AnnouncementId)
         {
             return new SuccessDataResult<Announcement>(_announcementDal.Get(b => b.Id == AnnouncementId), (Messages.AnnouncementListed));
         }
 
+
+        [CacheRemoveAspect("AnnouncementService.Get")]
         public IResult Delete(Announcement announcement)
         {
             _announcementDal.Delete(announcement);
@@ -47,6 +55,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(AnnouncementValidator))]
+        [CacheRemoveAspect("AnnouncementService.Get")]
         public IResult Update(Announcement announcement)
         {
             _announcementDal.Update(announcement);
