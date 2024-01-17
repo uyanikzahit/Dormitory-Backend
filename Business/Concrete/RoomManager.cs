@@ -59,6 +59,8 @@ namespace Business.Concrete
             return new SuccessDataResult<Room>(_roomDal.Get(r=>r.RoomId == roomId));
         }
 
+
+        [CacheRemoveAspect("RoomService.Get")]
         public IResult Remove(Room room)
         {
             _roomDal.Delete(room);

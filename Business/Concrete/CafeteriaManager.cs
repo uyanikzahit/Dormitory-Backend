@@ -53,6 +53,7 @@ namespace Business.Concrete
         }
 
 
+        [CacheRemoveAspect("CafeteriaService.Get")]
         public IResult Remove(Cafeteria cafeteria)
         {
             _cafeteriaDal.Delete(cafeteria);

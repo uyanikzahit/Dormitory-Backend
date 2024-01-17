@@ -60,11 +60,13 @@ namespace Business.Concrete
         }
 
 
+        [CacheRemoveAspect("SchoolService.Get")]
         public IResult Remove(School school)
         {
             _schoolDal.Delete(school);
             return new SuccessResult(Messages.SchoolDeleted);
         }
+
 
         [ValidationAspect(typeof(SchoolValidator))]
         [SecuredOperation("admin")]

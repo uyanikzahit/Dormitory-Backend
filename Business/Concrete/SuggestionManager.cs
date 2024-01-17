@@ -78,6 +78,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(SuggestionValidator))]
+        [CacheRemoveAspect("SuggestionService.Get")]
         public IResult Update(Suggestion suggestion)
         {
             var userExists = _userDal.Get(u => u.Id == suggestion.UserId);

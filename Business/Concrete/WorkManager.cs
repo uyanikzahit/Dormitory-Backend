@@ -34,7 +34,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.WorkAdded);
         }
 
-
+        [CacheRemoveAspect("WorkService.Get")]
         public IResult Delete(Work work)
         {
             _workDal.Delete(work);

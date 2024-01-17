@@ -31,9 +31,9 @@ namespace Business.Concrete
             _activityDal = activityDal;
         }
 
+
         [ValidationAspect(typeof(RecordValidator))]
         [CacheRemoveAspect("RecordService.Get")]
-
         public IResult Add(Record record)
         {
             var userExists = _userDal.Get(u => u.Id == record.UserId);
@@ -56,11 +56,14 @@ namespace Business.Concrete
             
         }
 
+
+        [CacheRemoveAspect("RecordService.Get")]
         public IResult Delete(Record record)
         {
             _recordDal.Delete(record);
             return new SuccessResult(Messages.RecordDeleted);
         }
+
 
         [PerformanceAspect(7)]
         [CacheAspect]
@@ -162,7 +165,6 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(RecordValidator))]
         [CacheRemoveAspect("RecordService.Get")]
-
         public IResult Update(Record record)
         {
             var userExists = _userDal.Get(u => u.Id == record.UserId);
