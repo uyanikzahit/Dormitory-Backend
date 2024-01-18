@@ -2,6 +2,7 @@
 using Business.Constants;
 using Business.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -34,12 +35,14 @@ namespace Business.Concrete
 
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<Cafeteria>> GetAll()
         {
             return new SuccessDataResult<List<Cafeteria>>(_cafeteriaDal.GetAll(), Messages.CafeteriasListed);
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<Cafeteria> GetCafeteriaByDate(DateTime dateTime)
         {
             return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(c => c.Date == dateTime), Messages.CafeteriaListedByDate);
@@ -47,6 +50,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<Cafeteria> GetCafeteriaById(int cafeteriaId)
         {
             return new SuccessDataResult<Cafeteria>(_cafeteriaDal.Get(b => b.Id == cafeteriaId),Messages.CafeteriaListed);

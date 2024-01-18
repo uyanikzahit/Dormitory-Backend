@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -45,6 +46,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<School>> GetAll()
         {
       
@@ -54,6 +56,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<School> GetShcoolById(int schoolId)
         {
             return new SuccessDataResult<School>(_schoolDal.Get(b => b.SchoolId ==schoolId),(Messages.SchoolListed));
