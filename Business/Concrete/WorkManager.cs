@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -42,6 +43,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<Work>> GetAll()
         {
             return new SuccessDataResult<List<Work>>(_workDal.GetAll(), Messages.WorksListed);
@@ -50,6 +52,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<Work> GetById(int workId)
         {
             return new SuccessDataResult<Work>(_workDal.Get(b => b.Id == workId), Messages.WorkListed);

@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
@@ -61,6 +62,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<UserImage>> GetAll()
         {
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll());
@@ -68,6 +70,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<UserImage> GetByImageId(int imageId)
         {
             return new SuccessDataResult<UserImage>(_userImageDal.Get(c => c.Id == imageId));
@@ -75,6 +78,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<UserImage>> GetByUserId(int userId)
         {
             var result = BusinessRules.Run(CheckUserImageExists(userId));

@@ -1,6 +1,7 @@
 ﻿using Business.Constants;
 using Business.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -35,18 +36,21 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<Suggestion>> GetAll()
         {
             return new SuccessDataResult<List<Suggestion>>(_suggestionDal.GetAll(), Messages.SuggestionsListed);
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<Suggestion> GetById(int suggestionId)
         {
             return new SuccessDataResult<Suggestion>(_suggestionDal.Get(s => s.Id == suggestionId));
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<Suggestion>> GetSuggestionByUserId(int userId)
         {
             return new SuccessDataResult<List<Suggestion>>(_suggestionDal.GetAll(u => u.UserId == userId));
@@ -54,6 +58,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<SuggestionDetailDto>> GetSuggestionDetails()
         {
             if (DateTime.Now.Hour == 22)
@@ -64,6 +69,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [PerformanceAspect(7)]
         public IDataResult<List<SuggestionDetailDto>> GetSuggestionDetailsId(int suggestionId)
         {
             List<SuggestionDetailDto> suggestionDetails = _suggestionDal.GetSuggestionDetails(s => s.Id == suggestionId);
