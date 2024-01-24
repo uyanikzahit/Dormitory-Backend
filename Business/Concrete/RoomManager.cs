@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.FluentValidation;
 using Core.Aspects.Autofac.Caching;
@@ -29,6 +30,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(RoomValidator))]
         [CacheRemoveAspect("RoomService.Get")]
+        [SecuredOperation("admin, moderator")]
         public IResult Add(Room room)
         {
             IResult result = BusinessRules.Run(CheckIfRoomNumberExists(room.RoomNumber));
@@ -59,7 +61,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Room>(_roomDal.Get(r=>r.RoomId == roomId));
         }
 
-
+        [SecuredOperation("admin, moderator")]
         [CacheRemoveAspect("RoomService.Get")]
         public IResult Remove(Room room)
         {
@@ -69,6 +71,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(RoomValidator))]
         [CacheRemoveAspect("RoomService.Get")]
+        [SecuredOperation("admin, moderator")]
         public IResult Update(Room room)
         {
             var userExists = _userDal.Get(u => u.Id == room.UserId);

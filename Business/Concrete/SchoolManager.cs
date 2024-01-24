@@ -30,7 +30,7 @@ namespace Business.Concrete
 
 
         [ValidationAspect(typeof(SchoolValidator))]
-        [SecuredOperation("admin")]
+        [SecuredOperation("admin, moderator")]
         [CacheRemoveAspect("SchoolService.Get")]
         public IResult Add(School school)
         {
@@ -62,7 +62,7 @@ namespace Business.Concrete
             return new SuccessDataResult<School>(_schoolDal.Get(b => b.SchoolId ==schoolId),(Messages.SchoolListed));
         }
 
-
+        [SecuredOperation("admin, moderator")]
         [CacheRemoveAspect("SchoolService.Get")]
         public IResult Remove(School school)
         {
@@ -72,7 +72,7 @@ namespace Business.Concrete
 
 
         [ValidationAspect(typeof(SchoolValidator))]
-        [SecuredOperation("admin")]
+        [SecuredOperation("admin, moderator")]
         [CacheRemoveAspect("SchoolService.Get")]
         public IResult Update(School school)
         {
