@@ -69,6 +69,7 @@ namespace Business.Concrete
 
         }
 
+
         [CacheAspect]
         [PerformanceAspect(7)]
         public IDataResult<UserImage> GetByImageId(int imageId)
@@ -76,6 +77,7 @@ namespace Business.Concrete
             return new SuccessDataResult<UserImage>(_userImageDal.Get(c => c.Id == imageId));
 
         }
+
 
         [CacheAspect]
         [PerformanceAspect(7)]
@@ -88,6 +90,7 @@ namespace Business.Concrete
             }
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(u => u.Id == userId));
         }
+
 
         [CacheRemoveAspect("UserImageService.Get")]
         public IResult Update(IFormFile file, UserImage userImage)

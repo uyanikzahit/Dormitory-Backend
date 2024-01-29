@@ -27,6 +27,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+
         [HttpGet("getbyid")]
         public IActionResult GetById(int roomId)
         {
@@ -37,6 +38,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
 
         [HttpPost("add")]
         public IActionResult Add(Work work)
@@ -50,8 +52,8 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPut("update")]
 
+        [HttpPut("update")]
         public IActionResult Update(Work work)
         {
             var result = _workService.Update(work);
@@ -62,8 +64,8 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpDelete("remove")]
 
+        [HttpDelete("remove")]
         public IActionResult Remove(Work work)
         {
             var result = _workService.Delete(work);

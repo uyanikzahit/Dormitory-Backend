@@ -34,11 +34,11 @@ namespace Business.Concrete
         [CacheRemoveAspect("SchoolService.Get")]
         public IResult Add(School school)
         {
-            //var userExists = _userDal.Get(u => u.Id == school.UserId);
-            //if (userExists == null)
-            //{
-            //    return new ErrorResult(Messages.UserNotFound);
-            //}
+            var userExists = _userDal.Get(u => u.Id == school.UserId);
+            if (userExists == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
             _schoolDal.Add(school);
             return new SuccessResult(Messages.SchoolAdded);
         }
