@@ -11,6 +11,6 @@ namespace DataAccess.Abstract
 {
     public interface IRoomDal : IEntityRepository<Room>
     {
-        public List<RoomDetailDto> GetRoomDetails();
+        c
     }
 }
