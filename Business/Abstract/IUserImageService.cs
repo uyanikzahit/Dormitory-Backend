@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,7 @@ namespace Business.Abstract
         IDataResult<List<UserImage>> GetAll();
         IDataResult<UserImage> GetByImageId(int imageId);
         IDataResult<List<UserImage>> GetByUserId(int userId);
+        IDataResult<List<UserImageDetailDto>> GetUserImageDetails();
+
     }
 }

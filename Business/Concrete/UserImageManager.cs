@@ -8,6 +8,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -89,6 +90,16 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<UserImage>>(GetDefaultImage(userId).Data);
             }
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(u => u.Id == userId));
+        }
+
+
+        public IDataResult<List<UserImageDetailDto>> GetUserImageDetails()
+        {
+            if (DateTime.Now.Hour == 22)
+            {
+                return new ErrorDataResult<List<UserImageDetailDto>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<UserImageDetailDto>>(_userImageDal.GetUserImageDetails(), Messages.RecordDetailsListed);
         }
 
 
